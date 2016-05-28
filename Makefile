@@ -113,6 +113,11 @@ clean:
 	done
 	rm -f $(TARBALL_NAME)
 
+ini:
+	for subdir in $(SUBDIRS); do \
+                make -C $$subdir ini || exit 1; \
+        done
+
 premake:
 	make -C $(M2S_ROOT)/runtime/opencl
 	for subdir in $(SUBDIRS); do \

@@ -1,3 +1,4 @@
+SIZE = 3
 
 M2S_LIBOPENCL = $(M2S_LIB)/libm2s-opencl.so
 
@@ -20,4 +21,5 @@ $(PROGRAM_BINARY_DYNAMIC): *.cpp $(BENCHMARKS_ROOT)/common/*.cpp $(M2S_LIBOPENCL
 	$(CC) $(CFLAGS) *.cpp $(BENCHMARKS_ROOT)/common/*.cpp -o $(PROGRAM_BINARY_DYNAMIC) $(LDFLAGS_DYNAMIC)
 
 ini:	
-	if [ -a $(BENCHMARK_NAME)_Kernels.bin ]; then echo '$(PWD)/$(PROGRAM_BINARY_STATIC) --load $(BENCHMARK_NAME)_Kernels.bin -q -e' > benchmark.ini; fi;
+	if [ -a $(BENCHMARK_NAME)_Kernels.bin ] && [ -n "$(SIZE)" ]; then echo '$(CURDIR)/$(PROGRAM_BINARY_STATIC) --load $(BENCHMARK_NAME)_Kernels.bin -q -e -x $(SIZE)' > benchmark.ini; fi;
+
