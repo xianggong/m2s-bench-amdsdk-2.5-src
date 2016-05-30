@@ -93,15 +93,15 @@ EXTRA_DIST = \
 BENCHMARK_SUITE = m2s-bench-amdapp-2.5
 
 TARBALL_NAME = $(BENCHMARK_SUITE).tar.gz
-M2S_ROOT = $(HOME)/multi2sim
+M2S_ROOT = $(CURDIR)/../multi2sim
 M2S_LIB = $(M2S_ROOT)/lib/.libs
 M2S_BIN = $(M2S_ROOT)/bin
 M2S_INCLUDE = $(M2S_ROOT)/runtime/include
 M2S_DEVICE = "Tahiti"
 
 CFLAGS = "-I../include -I. -I../common -I$(M2S_INCLUDE) -g"
-LDFLAGS_STATIC = "-L$(M2S_LIB) -lm2s-opencl -lpthread -ldl -lrt -static -m32"
-LDFLAGS_DYNAMIC = "-L$(M2S_LIB) -lm2s-opencl -lpthread -ldl -lrt -m32"
+LDFLAGS_STATIC = "-m32 -L$(M2S_LIB) -lm -lrt -pthread -l:libm2s-opencl.a -ldl"
+LDFLAGS_DYNAMIC = "-m32 -L$(M2S_LIB) -lm2s-opencl -lpthread -ldl -lrt"
 
 all: premake
 
